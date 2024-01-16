@@ -1,40 +1,46 @@
 import React from 'react';
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, Upload } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
+import { message, Upload } from 'antd';
+import Navbar from '../Navbar/Navbar';
+
+const { Dragger } = Upload;
 const props = {
+  name: 'file',
+  multiple: true,
   action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-  onChange({ file, fileList }) {
-    if (file.status !== 'uploading') {
-      console.log(file, fileList);
+  onChange(info) {
+    const { status } = info.file;
+    if (status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
     }
   },
-  defaultFileList: [
-    {
-      uid: '1',
-      name: 'xxx.png',
-      status: 'uploading',
-      url: 'http://www.baidu.com/xxx.png',
-      percent: 33,
-    },
-    {
-      uid: '2',
-      name: 'yyy.png',
-      status: 'done',
-      url: 'http://www.baidu.com/yyy.png',
-    },
-    {
-      uid: '3',
-      name: 'zzz.png',
-      status: 'error',
-      response: 'Server Error 500',
-      // custom error message to show
-      url: 'http://www.baidu.com/zzz.png',
-    },
-  ],
+  onDrop(e) {
+    console.log('Dropped files', e.dataTransfer.files);
+  },
 };
-const IMGUpload = () => (
-  <Upload {...props}>
-    <Button icon={<UploadOutlined />}>Upload</Button>
-  </Upload>
+const App = () => (
+  <div className='outer-main'>
+    <div className="nav">
+        <Navbar />
+    </div>
+    <div className='main2'>
+    <Dragger {...props}>
+      <p className="ant-upload-drag-icon">
+        <InboxOutlined />
+      </p>
+      <p className="ant-upload-text">Click or drag file to this area to upload</p>
+      <p className="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+        banned files.
+      </p>
+    </Dragger>
+    </div>
+  </div>
+  
 );
-export default IMGUpload;
+export default App;

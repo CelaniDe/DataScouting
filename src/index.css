@@ -14,7 +14,7 @@
   --link-color-hover: #858bff;
 }
 
-[data-theme]
+/* [data-theme] */
 
 a {
   font-weight: 500;
@@ -22,15 +22,101 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: 
+  color: var(--link-color-hover)
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 88vw;
+  min-height: 88vh;
+}
+
+.outer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 88vw;
+  min-height: 88vh;
+  background-color: red;
+  position: relative;
+}
+
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main {
+  height: 68vh;
+  width: 90%;
+  background-color: yellow;
+  margin: 80px 0px 0px;
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: flex-start;
+
+  gap: 20px;
+}
+
+.main2 {
+  height: 68vh;
+  width: 100%;
+  background-color: yellow;
+  margin: 80px 0px 0px;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.main3 {
+  height: 68vh;
+  width: 90%;
+  background-color: yellow;
+  margin: 80px 0px 0px;
+  padding: 20px;
+  /* border: 1px solid grey;
+  border-radius: 20px; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user {
+  transition: filter 0.2s linear;
+}
+
+.user:hover {
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.img-border {
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-img {
+  width: 50px;
+  height: 50px;
 }
 
 h1 {

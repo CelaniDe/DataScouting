@@ -57,10 +57,10 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit" className="login-form-button" style={{marginRight: "5px"}}>
             Log in
             </Button>
-            Or <a href="/Register" >register now!</a>
+            Or <a href="/Register" >Register now!</a>
         </Form.Item>
 
         <Button type="primary" value="large" onClick={() => navigate('/Upload')}>Go to Upload</Button>

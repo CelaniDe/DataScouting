@@ -5,9 +5,12 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css'
+import { ProtectedRoute } from './Pages/AuthContext/ProtectedRoute.jsx';
 import Login from './Pages/Login/login.jsx';
 import Register from './Pages/Register/register.jsx';
 import Upload from './Pages/Upload/upload.jsx';
+import Library from './Pages/Library/library.jsx';
+import Output from './Pages/Output/output.jsx';
 
 
 function App() {
@@ -20,7 +23,13 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<Login />} />
                 <Route exact path="/Register" element={<Register />} />
-                <Route exact path="/Upload" element={<Upload />} />
+                <Route path="/Upload" element={<Upload />}/>
+                <Route path="/Library" element={<Library />}/>
+                <Route path="/Output" element={<Output />}/>
+                
+                {/* <Route path="/Upload" element={<ProtectedRoute><Upload /></ProtectedRoute>}/>
+                <Route path="/Library" element={<ProtectedRoute><Library /></ProtectedRoute>}/>
+                <Route path="/Output" element={<ProtectedRoute><Output /></ProtectedRoute>}/> */}
             </Routes>
         </Router>
       </div>
