@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: datascouting
+      POSTGRES_USER: celani
+      POSTGRES_PASSWORD: 112233!!
+    ports:
+      - "5666:5432"
+    volumes:
+      - pg_data_scouting:/var/lib/postgresql/data
+
+volumes:
+  pg_data_scouting:
