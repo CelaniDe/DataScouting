@@ -8,8 +8,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
-
   --link-color: #646cff;
   --link-color-hover: #858bff;
 }
@@ -22,7 +20,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--link-color-hover)
+  color: var(--link-color-hover);
 }
 
 body {
@@ -40,14 +38,14 @@ body {
   justify-content: center;
   min-width: 88vw;
   min-height: 88vh;
-  background-color: red;
+  /* background-color: red; */
   position: relative;
 }
 
 .nav {
   height: 50px;
   width: 100%;
-  background-color: blue;
+  /* background-color: blue; */
   position: absolute;
   top: 0;
   left: 0;
@@ -56,17 +54,29 @@ body {
   justify-content: flex-end;
 }
 
-.main {
-  height: 68vh;
-  width: 90%;
-  background-color: yellow;
+.main,
+.main2,
+.main3 {
+  /* background-color: yellow; */
   margin: 80px 0px 0px;
   padding: 20px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  min-height: 68vh;
+  min-width: 780px;
+  width: fit-content;
+  max-width: 1040px;
+  
   border: 1px solid grey;
   border-radius: 20px;
 
-  display: flex;
   justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
 
   gap: 20px;
 }
@@ -74,34 +84,16 @@ body {
 .main2 {
   height: 68vh;
   width: 100%;
-  background-color: yellow;
-  margin: 80px 0px 0px;
-  padding: 20px;
 
-  display: flex;
-  justify-content: center;
-}
-
-.main3 {
-  height: 68vh;
-  width: 90%;
-  background-color: yellow;
-  margin: 80px 0px 0px;
-  padding: 20px;
-  /* border: 1px solid grey;
-  border-radius: 20px; */
-
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
-.user {
-  transition: filter 0.2s linear;
-}
-
-.user:hover {
-  filter: drop-shadow(5px 5px 10px #000000);
+.main3 {
+  height: 38vh;
+  width: 90%;
+  
+  align-items: center;
 }
 
 .img-border {
@@ -112,6 +104,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px;
+  transition: filter 0.2s linear;
+}
+
+.img-border:hover {
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 2px #00000050);
 }
 
 .upload-img {
@@ -135,11 +134,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
