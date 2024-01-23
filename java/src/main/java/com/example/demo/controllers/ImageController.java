@@ -41,6 +41,13 @@ public class ImageController
     public List<Image> getMethodName() {
         return service.getAllImages();
     }
+
+    @GetMapping("/my")
+    public List<Image> getMyImages() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getName());
+        return service.getAllImagesByUsername(authentication.getName());
+    }
         
 
     @GetMapping("/json")
@@ -58,8 +65,8 @@ public class ImageController
     @PostMapping(value = "/detect_image")
     public ResponseEntity<InputStreamResource> getMethodNameImage(@RequestParam("file") MultipartFile imageRequest) {
 
-        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // System.out.println(authentication.getName());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getName());
         InputStream s = service.getImageFromDetection(imageRequest);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);

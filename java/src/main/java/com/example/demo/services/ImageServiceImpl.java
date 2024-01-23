@@ -112,5 +112,13 @@ public class ImageServiceImpl implements ImageService {
 
         return null;
     }
+
+
+
+    @Override
+    public List<Image> getAllImagesByUsername(String username) {
+        // TODO Auto-generated method stub
+        return imageRepository.findByUserName(username);
+    }
     
 }
