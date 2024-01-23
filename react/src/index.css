@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 88vw;
   min-height: 88vh;
+  background-color: rgb(238, 249, 254);
 }
 
 .outer-main {
@@ -66,10 +67,10 @@ body {
 }
 
 .main {
-  min-height: 68vh;
-  min-width: 780px;
-  width: fit-content;
-  max-width: 1040px;
+  height: 68vh;
+  min-width: 740px;
+  width: min-content;
+  /* max-width: 1060px; */
   
   border: 1px solid grey;
   border-radius: 20px;
@@ -79,6 +80,7 @@ body {
   flex-wrap: wrap;
 
   gap: 20px;
+  overflow-y: auto;
 }
 
 .main2 {

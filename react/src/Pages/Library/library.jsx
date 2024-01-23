@@ -34,6 +34,62 @@ const Library = () => {
             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
           />
         </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
+        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+          <img
+            className="img-border"
+            onClick={openOutput}
+            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+          />
+        </div>
         <div className="img-border" onClick={openUpload}>
           <img src={uploadImg} alt="upload an image" className="upload-img" />
         </div>
