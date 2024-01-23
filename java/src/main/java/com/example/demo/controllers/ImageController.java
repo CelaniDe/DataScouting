@@ -20,6 +20,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -56,6 +58,8 @@ public class ImageController
     @PostMapping(value = "/detect_image")
     public ResponseEntity<InputStreamResource> getMethodNameImage(@RequestParam("file") MultipartFile imageRequest) {
 
+        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // System.out.println(authentication.getName());
         InputStream s = service.getImageFromDetection(imageRequest);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);

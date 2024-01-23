@@ -6,6 +6,8 @@ import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -93,7 +95,9 @@ public class ImageServiceImpl implements ImageService {
             String responseMessage1 = this.imageStorageRepository.uploadImage(new ByteArrayInputStream(mlImageBytes),"detected_" + timestamp + requestImage.getOriginalFilename());
             String responseMessage2 = this.imageStorageRepository.uploadImage(new ByteArrayInputStream(requestImage.getBytes()),"original_" + timestamp + requestImage.getOriginalFilename());
             Image model_image = new Image();
-            model_image.userName = "manolis";
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println(authentication.getName());
+            model_image.userName = authentication.getName();
             model_image.originalLink = "https://firebasestorage.googleapis.com/v0/b/datascouting-522d6.appspot.com/o/" + "original_" + timestamp + requestImage.getOriginalFilename() + "?alt=media";
             model_image.detectedLink = "https://firebasestorage.googleapis.com/v0/b/datascouting-522d6.appspot.com/o/" + "detected_" + timestamp + requestImage.getOriginalFilename() + "?alt=media";
             imageRepository.save(model_image);
