@@ -12,6 +12,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    
+    public String userName;
+    public String originalLink;
+    public String detectedLink; 
 }

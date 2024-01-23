@@ -10,9 +10,9 @@ import tempfile
 app = FastAPI()
 
 # Replace this path with the path to your YOLOv5 model file
-MODEL_PATH = "/home/celani/Desktop/DataScouting/yolov5s.pt"
-if not Path(MODEL_PATH).exists():
-    raise HTTPException(status_code=500, detail="YOLOv5 model not found")
+# MODEL_PATH = "/home/celani/Desktop/DataScouting/yolov5s.pt"
+# if not Path(MODEL_PATH).exists():
+#     raise HTTPException(status_code=500, detail="YOLOv5 model not found")
 
 # Load the YOLOv5 model
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
