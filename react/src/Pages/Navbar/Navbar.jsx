@@ -41,7 +41,7 @@ const App = () => {
           // border: "1px solid lightblue",
           backgroundColor: 'rgba(0, 207, 222, 1)',
           cursor: isHovered ? "pointer" : "default",
-          filter: isHovered ? "drop-shadow(2px 2px 1px #000000)" : "none",
+          filter: isHovered ? "drop-shadow(1px 1px 2px #6b6b6b)" : "none",
         }}
         size="large"
         onMouseOver={handleMouseOver}
