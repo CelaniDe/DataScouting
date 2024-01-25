@@ -107,7 +107,7 @@ const Library = () => {
               <div key={index} style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
                 <img
                   className="img-border"
-                  onClick={() => {navigate(`/Output?originalLink=${element.originalLink}&detectedLink=${element.detectedLink}`);}}
+                  onClick={() => {navigate(`/Output?originalLink=${element.originalLink}&detectedLink=${element.detectedLink}&attributesDet=${element.attributesDet}`);}}
                   src={`${element.originalLink}`}
                 />
               </div>

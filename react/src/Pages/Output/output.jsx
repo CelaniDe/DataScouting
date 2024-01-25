@@ -5,6 +5,8 @@ import arrow from "../../assets/images/right-arrow.png";
 import { Space, Table, Tag } from "antd";
 import LoadingImg from "../../assets/images/loading.gif";
 import { useLocation } from 'react-router-dom'
+import { useEffect } from "react";
+import { useState } from "react";
 
 const PlaceholderImage = () => (
   <img width={120} src={LoadingImg} alt="loading" />
@@ -22,23 +24,27 @@ const columns = [
     key: "confidence",
   },
 ];
-const data = [
-  {
-    key: "1",
-    object: "Dog",
-    confidence: 0.872,
-  },
-  {
-    key: "2",
-    object: "Frisbee",
-    confidence: 0.546,
-  },
-];
+
 
 const Library = () => 
 {
   const search = useLocation().search
   const searchParams = new URLSearchParams(search)
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetched_data = JSON.parse(searchParams.get('attributesDet'))['detected_objects']; //TASK NIKOS
+    const correct_data = fetched_data.map((element,index) => {
+      return {
+        key : index,
+        object : element.label,
+        confidence : element.confidence
+      }
+    });
+    console.log(correct_data);
+    setData(correct_data);
+  },[])
 
   return (
     <div className="outer-main">
