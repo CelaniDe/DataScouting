@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,11 +39,13 @@ public class ImageController
     }
 
     @GetMapping("/")
+    @CrossOrigin(origins = "*")
     public List<Image> getMethodName() {
         return service.getAllImages();
     }
 
     @GetMapping("/my")
+    @CrossOrigin(origins = "*")
     public List<Image> getMyImages() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getName());
@@ -51,11 +54,13 @@ public class ImageController
         
 
     @GetMapping("/json")
+    @CrossOrigin(origins = "*")
     public String getJsonResponse() {
         return "{\"message\": \"This is a JSON image controller response\"}";
     }
 
     @PostMapping(value = "/detect_json", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> getMethodName(@RequestParam("file") MultipartFile imageRequest) {
 
         String s = service.getJsonFromDetection(imageRequest);
@@ -63,6 +68,7 @@ public class ImageController
     }
 
     @PostMapping(value = "/detect_image")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<InputStreamResource> getMethodNameImage(@RequestParam("file") MultipartFile imageRequest) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

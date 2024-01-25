@@ -2,12 +2,26 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import { AuthAPI } from "../../apis/AuthAPI";
+import AuthContext from "../AuthContext/AuthContext";
+import { useContext } from "react";
+
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log("Received values of form: ", values);
+    try {
+      const {username , password} = values;
+      const token = await AuthAPI.login(username, password);
+      console.log(token);
+      login(token);
+      navigate("/Library")
+    } catch (error) {
+      console.log("lathos onoma h kodikos");
+    }
   };
 
   return (

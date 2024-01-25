@@ -5,6 +5,8 @@ import { Button, message, Upload } from "antd";
 import uploadImg from "../../assets/images/upload.png";
 import LoadingImg from "../../assets/images/loading.gif";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { ImageAPI } from "../../apis/ImageApi";
 
 const { Dragger } = Upload;
 const props = {
@@ -39,16 +41,38 @@ const PlaceholderImage = () => (
 
 const Library = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imagesFromApi, setImagesFromApi] = useState([]);
 
   const navigate = useNavigate();
 
   const openOutput = () => {
-    navigate("/Output");
+    navigate("/Output?");
   };
 
   const openUpload = () => {
     navigate("/Upload");
   };
+
+  const getMyImages = async () => {
+    try {
+      const myImages = await ImageAPI.getAllMyImages();
+      if(myImages.lenght == 0)
+        setIsVisible(false);
+      else
+      {
+        setImagesFromApi(myImages);
+        setIsVisible(true);
+      }
+      console.log(myImages);
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getMyImages();
+  }, [])
 
   return (
     <div className="outer-main">
@@ -77,69 +101,18 @@ const Library = () => {
     </div>
       
       <div className="main" style={{display: isVisible ? '' : 'none'}}>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
-        <div style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
-          <img
-            className="img-border"
-            onClick={openOutput}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-          />
-        </div>
+        {
+          imagesFromApi.map(
+            (element,index) =>
+              <div key={index} style={{backgroundImage: {LoadingImg}, height: 'fit-content'}}>
+                <img
+                  className="img-border"
+                  onClick={() => {navigate(`/Output?originalLink=${element.originalLink}&detectedLink=${element.detectedLink}`);}}
+                  src={`${element.originalLink}`}
+                />
+              </div>
+          )
+        }  
         <div className="img-border" onClick={openUpload}>
           <img src={uploadImg} alt="upload an image" className="upload-img" />
         </div>

@@ -2,10 +2,6 @@ package com.example.demo.controllers;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +33,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager; 
 
     @PostMapping("/register") 
+    @CrossOrigin(origins = "*")
     public Map<String, String> addNewUser(@RequestBody UserInfo userInfo) { 
         HashMap<String, String> map = new HashMap<>();
         try {
@@ -49,6 +46,7 @@ public class AuthController {
     }
     
     @PostMapping("/login")
+    @CrossOrigin(origins = "*")
     public Map<String, String> login(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())); 
         if (authentication.isAuthenticated()) { 

@@ -8,8 +8,8 @@ export const AuthProvider = ({ children }) => {
 
 
     const login = (user_info) => {
-        const {id : jwt} = user_info;
-        localStorage.setItem('jwt', jwt);
+        const {token} = user_info;
+        localStorage.setItem('jwt', token);
         localStorage.setItem('user', JSON.stringify(user_info));
     };
 
@@ -28,12 +28,12 @@ export const AuthProvider = ({ children }) => {
         return flag;
     }
 
-    const getPlayerId = () => {
+    const getUserId = () => {
         return localStorage.getItem("jwt");
     }
 
     return (
-        <AuthContext.Provider value={{ login, logout, isLoggedIn, getPlayerId }}>
+        <AuthContext.Provider value={{ login, logout, isLoggedIn, getUserId }}>
             {children}
         </AuthContext.Provider>
     );

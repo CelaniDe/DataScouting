@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,4 +16,6 @@ public class Image {
     public String userName;
     public String originalLink;
     public String detectedLink; 
+    @Column(length = 10000)
+    public String attributesDet; 
 }

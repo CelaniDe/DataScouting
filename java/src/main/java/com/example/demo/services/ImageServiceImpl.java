@@ -92,6 +92,9 @@ public class ImageServiceImpl implements ImageService {
             String timestamp = Long.toString(System.currentTimeMillis());
             InputStream mlImage = response.getBody();
             byte[] mlImageBytes = mlImage.readAllBytes();
+
+            String jsonObject = getJsonFromDetection(requestImage);
+
             String responseMessage1 = this.imageStorageRepository.uploadImage(new ByteArrayInputStream(mlImageBytes),"detected_" + timestamp + requestImage.getOriginalFilename());
             String responseMessage2 = this.imageStorageRepository.uploadImage(new ByteArrayInputStream(requestImage.getBytes()),"original_" + timestamp + requestImage.getOriginalFilename());
             Image model_image = new Image();
@@ -100,6 +103,7 @@ public class ImageServiceImpl implements ImageService {
             model_image.userName = authentication.getName();
             model_image.originalLink = "https://firebasestorage.googleapis.com/v0/b/datascouting-522d6.appspot.com/o/" + "original_" + timestamp + requestImage.getOriginalFilename() + "?alt=media";
             model_image.detectedLink = "https://firebasestorage.googleapis.com/v0/b/datascouting-522d6.appspot.com/o/" + "detected_" + timestamp + requestImage.getOriginalFilename() + "?alt=media";
+            model_image.attributesDet = jsonObject;
             imageRepository.save(model_image);
             return new ByteArrayInputStream(mlImageBytes);
         } catch (UnirestException e) {
