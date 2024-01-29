@@ -8,6 +8,7 @@ export const ProtectedRoute = ({ children }) => {
 
     if(!isLoggedIn())
     {
+        console.log('redirect');
         return <Navigate to="/login" replace />;
     }
 

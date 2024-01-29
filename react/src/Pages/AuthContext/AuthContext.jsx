@@ -1,10 +1,27 @@
 import { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA celanide');
+        const token = localStorage.getItem('jwt');
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            console.log(decodedToken)
+            if (decodedToken.exp < Date.now() / 1000) {
+                // Token has expired
+                logout();
+            } else {
+                // setUser(decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+            }
+        }
+    },[])
 
 
     const login = (user_info) => {

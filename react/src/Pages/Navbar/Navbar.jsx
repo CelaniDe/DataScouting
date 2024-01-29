@@ -11,7 +11,7 @@ const App = () => {
   const navigate = useNavigate();
 
   const openLibrary = () => {
-    navigate("/Library");
+    navigate("/");
   };
 
   const handleMouseOver = () => {

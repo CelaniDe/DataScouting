@@ -11,6 +11,17 @@ services:
       - "5666:5432"
     volumes:
       - pg_data_scouting:/var/lib/postgresql/data
+  spring-boot:
+    build:
+      context: ./java
+    image: openjdk:17-jdk-slim
+    ports:
+      - "8080:8080"
+  python-server:
+    build: 
+      context: ./python
+    ports:
+      - "8000:8000"
 
 volumes:
   pg_data_scouting:

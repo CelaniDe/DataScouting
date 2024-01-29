@@ -1,0 +1,7 @@
+fastapi
+torch
+pillow
+uvicorn
+python-multipart
+
+
