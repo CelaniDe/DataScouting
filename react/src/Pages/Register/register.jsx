@@ -54,6 +54,7 @@ const Register = () => {
       }}
       style={{
         maxWidth: 600,
+        width: '400px', height: '500px', margin: 'auto', marginTop: '200px'
       }}
       scrollToFirstError
     >

@@ -56,8 +56,10 @@ const Library = () => {
   const getMyImages = async () => {
     try {
       const myImages = await ImageAPI.getAllMyImages();
-      if(myImages.lenght == 0)
+      if(myImages.length == 0)
+      {
         setIsVisible(false);
+      }
       else
       {
         setImagesFromApi(myImages);

@@ -29,7 +29,8 @@ const App = () => {
     },
     {
       key: '2',
-      label: 'Logout'
+      label: 'Logout',
+      style: { color: 'red' }
     },
   ];
 

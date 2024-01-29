@@ -39,6 +39,7 @@ const Login = () => {
 
   return (
     <Form
+    style={{width: '200px', height: '500px', margin: 'auto', marginTop: '200px'}}
       name="normal_login"
       className="login-form"
       initialValues={{
