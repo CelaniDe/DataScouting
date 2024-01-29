@@ -1,5 +1,7 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
+import { AuthAPI } from '../../apis/AuthAPI';
+import { useNavigate } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -20,10 +22,25 @@ const tailFormItemLayout = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    try {
+      await AuthAPI.register(values.username, values.email, values.password);
+      messageApi.open({
+        type: 'success',
+        content: 'Successfully register',
+      });
+      navigate('/login')
+    } catch (error) {
+      messageApi.open({
+        type: 'error',
+        content: 'Error on registration',
+      });
+    }
   };
 
   return (
@@ -40,6 +57,7 @@ const Register = () => {
       }}
       scrollToFirstError
     >
+      {contextHolder}
       <Form.Item
         name="username"
         label="Username"

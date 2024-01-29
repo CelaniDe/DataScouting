@@ -8,28 +8,7 @@ import { ImageAPI } from "../../apis/ImageApi";
 
 
 const { Dragger } = Upload;
-const props = {
-  name: "file",
-  multiple: false,
-  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-  async onChange (info) {
-    const { status } = info.file;
-    if (status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (status === "done") {
-      message.success(`${info.file.name} file uploaded successfully.`);
-      console.log(info.file);
-      await ImageAPI.uploadImage(info.file);
-      window.location.replace('/');
-    } else if (status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-  onDrop(e) {
-    console.log("Dropped files", e.dataTransfer.files);
-  },
-};
+
 
 const customStyles = {
   width: '400px', // Set your desired width
@@ -38,7 +17,35 @@ const customStyles = {
 };
 const App = () => {
   
+  const navigate = useNavigate();
 
+  const props = {
+    name: "file",
+    multiple: false,
+    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+    async onChange (info) {
+      const { status } = info.file;
+      if (status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+        console.log(info.file);
+        try {
+          
+          await ImageAPI.uploadImage(info.file);
+        } catch (error) {
+          console.error(error);
+        }
+        navigate('/');
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+  };
   return(
   <div className="outer-main">
     <div className="nav">

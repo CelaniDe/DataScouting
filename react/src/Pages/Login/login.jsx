@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { AuthAPI } from "../../apis/AuthAPI";
 import AuthContext from "../AuthContext/AuthContext";
@@ -9,17 +9,30 @@ import { useContext } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   const { login } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log('mpike');
+  },[])
 
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     try {
       const {username , password} = values;
       const token = await AuthAPI.login(username, password);
+      messageApi.open({
+        type: 'success',
+        content: 'Successfully login',
+      });
       console.log(token);
       login(token);
-      navigate("/Library")
+      navigate("/")
     } catch (error) {
+      messageApi.open({
+        type: 'error',
+        content: 'Wrong username or password',
+      });
       console.log("lathos onoma h kodikos");
     }
   };
@@ -33,6 +46,7 @@ const Login = () => {
       }}
       onFinish={onFinish}
     >
+      {contextHolder}
       <Form.Item
         name="username"
         rules={[
